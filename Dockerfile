@@ -9,7 +9,7 @@ RUN apt-get update
 RUN apt-get install python-lxml -y
 RUN pip install --upgrade pip && pip install --upgrade pyopenssl
 
-RUN curl -L "https://github.com/RuudBurger/CouchPotatoServer/archive/$COUCHPOTATO_VERSION.tar.gz" | tar xz && \
+RUN curl -s -L "https://github.com/RuudBurger/CouchPotatoServer/archive/$COUCHPOTATO_VERSION.tar.gz" | tar xz && \
  mv CouchPotatoServer-* /couchpotatoserver 
 
 WORKDIR /couchpotatoserver
