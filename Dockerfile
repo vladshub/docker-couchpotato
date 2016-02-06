@@ -14,4 +14,4 @@ WORKDIR /couchpotatoserver
 
 EXPOSE 5050
 
-CMD ["/env/bin/python", "/couchpotatoserver/CouchPotato.py", "--console_log", "--data_dir=/data", "--config_file=/config/couchpota.ini"]
+CMD [". /env/bin/activate && /env/bin/python", "/couchpotatoserver/CouchPotato.py", "--console_log", "--data_dir=/data", "--config_file=/config/couchpota.ini"]
