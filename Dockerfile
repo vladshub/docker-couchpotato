@@ -3,7 +3,7 @@ MAINTAINER Vladislav Shub <vlad6il@gmail.com>
 
 EXPOSE 5050
 ENV PYTHONIOENCODING "UTF-8"
-COPY ./entrypoint.sh /
+COPY entrypoint.sh /
 RUN virtualenv /env
 
 ENV COUCHPOTATO_VERSION "master"
