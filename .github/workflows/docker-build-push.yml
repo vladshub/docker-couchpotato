@@ -1,0 +1,37 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: Azure/docker-login@v1
+      name: Docker Login
+      with:
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
+    - uses: actions/checkout@v2
+    - name: Docker Buildx
+      uses: crazy-max/ghaction-docker-buildx@v1.6.2
+      with:
+        # Buildx version. Example: v0.3.0
+        buildx-version: latest
+        # QEMU static binaries Docker image version. Example: 4.2.0-7
+        qemu-version: latest
+    - name: Available platforms
+      run: echo ${{ steps.buildx.outputs.platforms }}
+    - name: Run Buildx
+      run: |
+          docker buildx build \
+            --push \
+            --tag vladshub/couchpotato \
+            --platform linux/amd64,linux/arm64 \
+            .
