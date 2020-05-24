@@ -11,5 +11,7 @@ RUN git clone https://github.com/CouchPotato/CouchPotatoServer.git /couchpotatos
 	&& git checkout $COUCHPOTATO_VERSION
 
 WORKDIR /couchpotatoserver
+ENV DATA_DIR "/data"
+ENV CONFIG_FILE "/config/couchpota.ini"
 
 ENTRYPOINT ["/entrypoint.sh"]
